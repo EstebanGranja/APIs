@@ -1,0 +1,134 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7ff; /* Light blue background for task list */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #005f99; /* Darker blue for the heading */
+    margin-top: 20px;
+}
+
+/* To-do list styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff; /* White background for the list */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #d0e6f0; /* Light blue border */
+    background-color: #47708b; /* Blue for tasks */
+    color: white; /* White text for tasks */
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:hover {
+    background-color: #69a4c9; /* Slightly darker celeste on hover */
+}
+
+/* Checkbox styles */
+input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+/* Buttons for task list */
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.9em;
+    margin-left: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #b3e0ff; /* Light blue border */
+}
+
+a[href*="check_task"] {
+    background-color: #007acc; /* Blue for "Mark as done" */
+}
+
+a[href*="edit_task"] {
+    background-color: #005f99; /* Darker blue for "Edit" */
+}
+
+a[href*="delete_task"] {
+    background-color: #cc0000; /* Red for "Delete" */
+}
+
+a:hover {
+    background-color: #69a4c9; /* Light blue on hover */
+    color: #005f99; /* Blue text on hover */
+    border: 1px solid #99d0ff; /* Slightly darker blue border on hover */
+}
+
+a[href*="delete_task"]:hover {
+    background-color: #ff4d4d; /* Darker red for "Delete" hover */
+    border-color: #ff1a1a; /* Darker red border on hover */
+}
+
+/* Form styles for edit task page */
+form {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff; /* White background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #d0e6f0; /* Light blue border */
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus {
+    border-color: #007acc; /* Blue outline on focus */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #47708b;
+    border: 1px solid #b3e0ff; /* Light blue border */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #69a4c9; /* Darker blue on hover */
+}
+
+/* Button focus styles */
+button:focus {
+    outline: none;
+    border: 2px solid #005f99; /* Darker blue border on focus */
+}
