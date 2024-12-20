@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__, template_folder="templates")
 
-tasks = []
+tasks = [{"task": "Do dishes", "done": False}]
 
 @app.route('/')
 def home():
@@ -20,11 +20,11 @@ def add_task():
 
 @app.route("/edit/<int:index>", methods=["GET", "POST"])
 def edit_task(index):
-    task = tasks[index]
+    edited_task = tasks[index]
     if request.method == "GET":
-        return render_template("edit.html", to_do=tasks, index=index) # Edit template
+        return render_template("edit.html", edited_task=edited_task, index=index) # Edit template
     else:
-        task["task"] = request.form["to_do_form"] # Update task
+        edited_task["task"] = request.form["to_do_form"] # Update task
         return redirect(url_for("home"))
 
 
