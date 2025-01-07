@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #0077b6;
+}
+
+.loading {
+    font-size: 16px;
+    color: gray;
+}
+
+#clima p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+#estado {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
