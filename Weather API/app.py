@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify, render_template
 import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
 
-API_KEY = open("API_KEY.txt").read().strip()
 
 @app.route('/')
 def index():

@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Clima Actual</h1>
-        <p>Ciudad: {{ city }}</p>
+        <div class="city">Ciudad: {{ city }}</div>
         {% if temp < 13 %}
             <div class="low_temp">Temperatura: <span>{{ temp }} °C</span></div>
         {% elif temp >= 13 and temp < 24 %}

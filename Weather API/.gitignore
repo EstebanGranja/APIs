@@ -2,3 +2,4 @@ API_KEY.txt
 ./weather_venv
 __pycache__/
 response.json
+.env
