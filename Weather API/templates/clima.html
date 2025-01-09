@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/styles.css" rel="stylesheet"> 
+    <title>Clima</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Clima Actual</h1>
+        <p>Ciudad: {{ city }}</p>
+        {% if temp < 13 %}
+            <div class="low_temp">Temperatura: <span>{{ temp }} °C</span></div>
+        {% elif temp >= 13 and temp < 24 %}
+            <div class="mid_temp">Temperatura: <span>{{ temp }} °C</span></div>
+        {% elif temp >= 25 %}
+            <div class="high_temp">Temperatura: <span>{{ temp }} °C</span></div>
+        {% endif %}
+
+        {% if clouds < 30 %}
+            <div class="low_clouds">Nubosidad: {{ clouds }}%</div>
+        {% elif clouds >= 30 and clouds < 70 %}
+            <div class="mid_clouds">Nubosidad: {{ clouds }}%</div>
+        {% elif clouds >= 70 %}
+            <div class="high_clouds">Nubosidad: {{ clouds }}%</div>
+        {% endif %}
+
+        {% if hum < 30 %}
+            <div class="low_hum">Humedad: {{ hum }}%</div>
+        {% elif hum >= 30 and hum < 70 %}
+            <div class="mid_hum">Humedad: {{ hum }}%</div>
+        {% elif hum >= 70 %}
+            <div class="high_hum">Humedad: {{ hum }}%</div>
+        {% endif %}
+    </div>
+</body>
+</html>

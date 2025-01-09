@@ -7,12 +7,13 @@ if (navigator.geolocation) {
             document.getElementById("estado").innerText =
                 `Ubicación obtenida correctamente. Latitud: ${lat}, Longitud: ${lon}`;
 
-            // Enviar las coordenadas al servidor
-            fetch(`http://127.0.0.1:5000/obtener_clima?lat=${lat}&lon=${lon}`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    // Manejar la respuesta del servidor
+            
+            fetch(`/clima?lat=${lat}&lon=${lon}`)
+                .then(response => response.text())
+                .then(html => {
+                    document.open();
+                    document.write(html);
+                    document.close();
                 })
                 .catch(error => console.error('Error:', error));
         },
