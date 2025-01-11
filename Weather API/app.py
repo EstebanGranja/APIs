@@ -25,18 +25,25 @@ def obtener_clima():
     else:
         print(f"Latitud: {lat}, Longitud: {lon}")
     
-    url = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&exclude=minutely,hourly,alerts&units=metric&appid={API_KEY}"
+    current_weather = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&exclude=minutely,hourly,alerts&units=metric&appid={API_KEY}"
+    forecast = f"api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API_KEY}"
 
-    response = requests.get(url)
+    
+    response = requests.get(current_weather)
     data = response.json()
     print(data)
 
     ciudad = data['name']
     temperatura = data['main']['temp']
+    temp_min = data['main']['temp_min']
+    temp_max = data['main']['temp_max']
     nubes = data['clouds']['all']
     humedad = data['main']['humidity']
+    desc = data['weather'][0]['description']
+        
+
     
-    return render_template('clima.html', temp=temperatura, city=ciudad, clouds=nubes, hum=humedad)  
+    return render_template('clima.html', temp=temperatura, temp_min=temp_min, temp_max=temp_max, city=ciudad, clouds=nubes, hum=humedad, desc=desc)  
 
 
 if __name__ == '__main__':

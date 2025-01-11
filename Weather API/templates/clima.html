@@ -11,20 +11,27 @@
         <h1>Clima Actual</h1>
         <div class="city">Ciudad: {{ city }}</div>
         {% if temp < 13 %}
-            <div class="low_temp" style="background-image: url('../static/images/cold.jpg');">Temperatura: <span>{{ temp }} °C</span></div>
+            <div class="low_temp" style="background-image: url('../static/images/cold.jpg');">Temperatura: <span>{{ temp }} °C</span>
+            <div class="temp_range">min: {{ temp_min }} °C<br>max: {{ temp_max }} °C</div>
+            </div>
         {% elif temp >= 13 and temp < 24 %}
-            <div class="mid_temp" style="background-image: url('../static/images/mild.jpg');">Temperatura: <span>{{ temp }} °C</span></div>
+            <div class="mid_temp" style="background-image: url('../static/images/mild.jpg');">Temperatura: <span>{{ temp }} °C</span>
+            <div class="temp_range">min: {{ temp_min }} °C<br>max: {{ temp_max }} °C</div>
+            </div>
         {% elif temp >= 25 %}
-            <div class="high_temp" style="background-image: url('../static/images/hot.jpg');">Temperatura: <span>{{ temp }} °C</span></div>
+            <div class="high_temp" style="background-image: url('../static/images/hot.jpg');">Temperatura: <span>{{ temp }} °C</span>
+            <div class="temp_range">min: {{ temp_min }} °C<br>max: {{ temp_max }} °C</div>
+            </div>
         {% endif %}
 
         {% if clouds < 30 %}
-            <div class="low_clouds" style="background-image: url('../static/images/low_clouds.jpg');">Nubosidad: <br>{{ clouds }}%</div>
+            <div class="low_clouds" style="background-image: url('../static/images/low_clouds.jpg');">Nubosidad: {{ clouds }}%<br><span>{{ desc }}</span></div>
         {% elif clouds >= 30 and clouds < 70 %}
-            <div class="mid_clouds" style="background-image: url('../static/images/mid_clouds.jpg');">Nubosidad: <br>{{ clouds }}%</div>
+            <div class="mid_clouds" style="background-image: url('../static/images/mid_clouds.jpg');">Nubosidad: {{ clouds }}%<br><br>{{ desc }}</div>
         {% elif clouds >= 70 %}
-            <div class="high_clouds" style="background-image: url('../static/images/high_clouds.jpg');">Nubosidad: <br>{{ clouds }}%</div>
+            <div class="high_clouds" style="background-image: url('../static/images/high_clouds.jpg');">Nubosidad: {{ clouds }}%<br><br>{{ desc }}</div>
         {% endif %}
+        
 
         {% if hum < 30 %}
             <div class="low_hum">Humedad: {{ hum }}%</div>
