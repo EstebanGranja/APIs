@@ -49,22 +49,50 @@ async def on_ready():
 
 @bot.tree.command(name="whoisbetter")
 async def whoisbetter(interaction: discord.Interaction, invocador1: str, invocador2: str):
-    summoner1 = get_summoner_data(invocador1)
-    summoner2 = get_summoner_data(invocador2)
+    ranks = ["IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "EMERALD", "DIAMOND", "MASTER", "GRANDMASTER", "CHALLENGER"]
 
-    ranked1 = get_ranked_data(summoner1['id'])
-    ranked2 = get_ranked_data(summoner2['id'])
+    def get_highest_ranked_entry(entries):
+        solo_duo_entries = [entry for entry in entries if entry['queueType'] == 'RANKED_SOLO_5x5']
+        if not solo_duo_entries:
+            return None
+        return max(solo_duo_entries, key=lambda entry: ranks.index(entry['tier']))
 
-    mastery1 = get_mastery_data(summoner1['id'])
-    mastery2 = get_mastery_data(summoner2['id'])
+    summoner1_data = get_summoner_data(invocador1)
+    summoner2_data = get_summoner_data(invocador2)
 
-    # Calculo temporal de mejor jugador
-    if summoner1['summonerLevel'] > summoner2['summonerLevel']:
-        better = invocador1
+    summoner1_ranked_data = get_ranked_data(summoner1_data['id'])
+    summoner2_ranked_data = get_ranked_data(summoner2_data['id'])
+
+    summoner1_highest_rank = get_highest_ranked_entry(summoner1_ranked_data)
+    summoner2_highest_rank = get_highest_ranked_entry(summoner2_ranked_data)
+
+    if not summoner1_highest_rank and not summoner2_highest_rank:
+        await interaction.response.send_message("Neither summoner has a rank in solo/duo queue.")
+        return
+
+    if not summoner1_highest_rank:
+        await interaction.response.send_message(f"{invocador2} is better with rank {summoner2_highest_rank['tier']} {summoner2_highest_rank['rank']}.")
+        return
+
+    if not summoner2_highest_rank:
+        await interaction.response.send_message(f"{invocador1} is better with rank {summoner1_highest_rank['tier']} {summoner1_highest_rank['rank']}.")
+        return
+
+    if ranks.index(summoner1_highest_rank['tier']) > ranks.index(summoner2_highest_rank['tier']):
+        better_summoner = invocador1
+        better_rank = summoner1_highest_rank
+    elif ranks.index(summoner1_highest_rank['tier']) < ranks.index(summoner2_highest_rank['tier']):
+        better_summoner = invocador2
+        better_rank = summoner2_highest_rank
     else:
-        better = invocador2
+        if summoner1_highest_rank['rank'] > summoner2_highest_rank['rank']:
+            better_summoner = invocador1
+            better_rank = summoner1_highest_rank
+        else:
+            better_summoner = invocador2
+            better_rank = summoner2_highest_rank
 
-    await interaction.response.send_message(f'El mejor jugador es {better}!')
+    await interaction.response.send_message(f"{better_summoner} is better with rank {better_rank['tier']} {better_rank['rank']}.")
 
 
 bot.run(DS_API_KEY)
